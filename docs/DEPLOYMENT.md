@@ -1,6 +1,6 @@
 # HAVEN deployment guide
 
-Status: production preparation only. No hosting services have been created and no public demo URL has been verified. Publishing, pushing code, creating resources, and updating ZAYVERSE are separate actions requiring approval.
+Status: the initial deployment was approved and completed on 2026-10-24. See [verified live addresses, configuration, and maintenance](LIVE_DEPLOYMENT.md). This guide records the setup procedure; new paid resources, account permissions, and portfolio changes still require separate approval.
 
 ## Architecture and runtimes
 

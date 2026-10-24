@@ -4,6 +4,12 @@
 
 HAVEN is a full-stack coding assessment that searches the supplied 12-listing JSON dataset through a real API-connected React interface. No database, credentials, or external service account is required for local development. Production uses explicit API-origin and CORS settings; see [the deployment guide](docs/DEPLOYMENT.md).
 
+## Live Demo
+
+[Open HAVEN](https://haven-listing-search.vercel.app/) · [API health](https://haven-listing-search-api.onrender.com/api/health) · [Live deployment and maintenance](docs/LIVE_DEPLOYMENT.md).
+
+The free backend may take about a minute to wake after inactivity.
+
 ## Technology Stack
 
 - **Backend:** Python, FastAPI, Pydantic, Uvicorn; pytest and HTTPX for tests.
