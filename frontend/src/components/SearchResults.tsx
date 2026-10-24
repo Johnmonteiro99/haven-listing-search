@@ -7,6 +7,7 @@ import type { RequestState } from '../search/useListingSearch';
 import { ListingCard } from './ListingCard';
 import { ResultsViewToggle, type ResultsView } from './ResultsViewToggle';
 import { Pagination } from './Pagination';
+import { DelayedLoadingNote } from './DelayedLoadingNote';
 
 interface SearchResultsProps {
   mobileMap?: boolean;
@@ -70,6 +71,7 @@ export function SearchResults({ request, targetBudget, onPage, onClear, onRetry,
           'Relevance is scored out of 100: 70% budget proximity and 30% listing recency.'} Scores are rounded for display.</p>
       </details>
     </div>
+    <DelayedLoadingNote request={request} />
     <div id="results-workspace" className={`results-workspace${view === 'map' ? ' is-map' : ''}`} data-view={view} aria-busy={busy}>
       {view === 'map' && (!data || !data.items.length) && <aside className="map-pane" aria-label="Property map">
         <div className="map-fallback" role="status">{busy ? 'Updating the map for your search…' :

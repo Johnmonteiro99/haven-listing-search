@@ -1,24 +1,44 @@
 """HTTP entry point: validate inputs, call services, and serialize responses."""
 
+from contextlib import asynccontextmanager
 from datetime import date, datetime, timezone
 import logging
+import os
 from pathlib import Path
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from app.config import parse_cors_origins
+
 from app.models import SearchParams
-from app.repository import DEFAULT_DATA_PATH, ListingRepositoryError
+from app.repository import DEFAULT_DATA_PATH, ListingRepositoryError, load_listings
 from app.schemas import ListingResult, SearchResponse
 from app.search import search_listings
 
-app = FastAPI(title="Listing Search Service")
+
+@asynccontextmanager
+async def lifespan(application: FastAPI):
+    # Fail startup instead of advertising a healthy service with a missing feed.
+    load_listings(get_listing_path())
+    yield
+
+
+app = FastAPI(title="Listing Search Service", lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=parse_cors_origins(os.environ.get("CORS_ALLOWED_ORIGINS", "")),
+    allow_credentials=False,
+    allow_methods=["GET"],
+    allow_headers=[],
+)
 logger = logging.getLogger(__name__)
 
 
 class HealthResponse(BaseModel):
-    """Simple HTTP availability response, independent of dataset readiness."""
+    """HTTP availability after successful startup dataset validation."""
 
     status: str
 

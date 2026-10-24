@@ -1,3 +1,5 @@
+import { apiUrl } from './config';
+
 /** Public camelCase contract from backend/app/models.py and schemas.py. */
 export interface SearchParams {
   minPrice?: number;
@@ -72,7 +74,7 @@ function validationMessage(data: unknown): string {
 
 /** Validate untrusted JSON before exposing it to React; cancellation is owned by the caller. */
 export async function getListings(params: SearchParams, signal?: AbortSignal): Promise<SearchResponse> {
-  const response = await fetch(`/api/listings?${buildSearchQuery(params)}`, { signal });
+  const response = await fetch(apiUrl(`/api/listings?${buildSearchQuery(params)}`), { signal });
   if (!response.ok) {
     if (response.status === 422) {
       const data: unknown = await response.json().catch(() => null);

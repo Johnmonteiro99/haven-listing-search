@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-HAVEN is a full-stack coding assessment that searches the supplied 12-listing JSON dataset through a real API-connected React interface. No database, credentials, environment variables, or external service account is required.
+HAVEN is a full-stack coding assessment that searches the supplied 12-listing JSON dataset through a real API-connected React interface. No database, credentials, or external service account is required for local development. Production uses explicit API-origin and CORS settings; see [the deployment guide](docs/DEPLOYMENT.md).
 
 ## Technology Stack
 
@@ -20,7 +20,7 @@ HAVEN is a full-stack coding assessment that searches the supplied 12-listing JS
 
 ## Getting Started
 
-Use Python 3.11+ and Node.js 22.12+ with npm. Verification used Python 3.14.5 and Node 26.0.0. Internet access is needed to install dependencies; fonts and images are local afterward.
+Use Python 3.14.5 and Node.js 22.x with npm. Production preparation was verified with Python 3.14.5 and Node 22.23.4; runtime pins are included. Internet access is needed to install dependencies; fonts and images are local afterward.
 
 Clone this repository and, from its root directory:
 
@@ -70,7 +70,7 @@ npm --prefix frontend exec -- tsc --noEmit -p frontend/tsconfig.json
 npm --prefix frontend run build
 ```
 
-The build also runs TypeScript checks before Vite. `npm run test:watch` from `frontend/` starts interactive tests. The production build produces static files; production hosting/API routing is outside this assessment setup. Use the development servers for the demo.
+The build also runs TypeScript checks before Vite. `npm run test:watch` from `frontend/` starts interactive tests. The production build produces static files and requires a valid `VITE_API_BASE_URL` HTTPS origin. See [deployment configuration](docs/DEPLOYMENT.md) before building; local development keeps the existing proxy without environment variables.
 
 ## Technology & Implementation Overview
 
@@ -110,6 +110,9 @@ Without `targetBudget`, relevance uses recency alone. One UTC reference date is 
 Development was assisted by **OpenAI Codex** for implementation, tests, documentation, and verification. The developer remains responsible for understanding, explaining, and modifying the submitted code.
 
 ## Additional Documentation
+
+- [Deployment guide](docs/DEPLOYMENT.md): Render/Vercel settings, environment variables, cold starts, deployment order, and public verification.
+- [Production readiness](docs/PRODUCTION_READINESS.md): current preparation, security scans, verification evidence, and remaining risks.
 
 - [Interview preparation](docs/INTERVIEW_PREP.md): current-source walkthroughs, worked examples, practice changes and interview questions.
 - [Codebase guide](docs/CODEBASE_GUIDE.md): detailed junior-friendly architecture, algorithms, and tests.
