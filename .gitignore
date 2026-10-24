@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Frontend dependencies and build/test output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+
+# Logs
+*.log
+
+# Project-local npm download cache
+.npm-cache/
+
+# Local assessment handouts and submission archives
+*.zip
+docs/Instructions.pdf
+docs/Coding_Test_Question_Paper.pdf
